@@ -1,0 +1,29 @@
+body {
+    background-color: #36393e;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+header {
+    color: white;
+    text-align: center;
+    font-size: x-large;
+}
+
+.square {
+    height: 60px;
+    width: 60px;
+    border: 2px solid white;
+    text-align: center;
+    background-color: #576579;
+    font-size: 3.75em;
+    color: white;
+}
