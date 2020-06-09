@@ -7,10 +7,13 @@ function Solver() {
 
     function handleSquare(value, rowInd, colInd, e) {
         let arr = gridArr.map((el) => {
-            if (el.rowInd === rowInd && el.colInd === colInd) {
-                console.log(arr[rowInd][colInd]);
-            }
-            return el;
+            return el.map((o) => {
+                if (o.rowInd === rowInd && o.colInd === colInd) {
+                    const updatedValue = { ...o, value: value };
+                    return updatedValue;
+                }
+                return o;
+            });
         });
         updateArr(arr);
     }
@@ -20,7 +23,6 @@ function Solver() {
             <div className="grid">
                 <Grid data={gridArr} function={handleSquare} />
             </div>
-            <div className="module"></div>
         </div>
     );
 }

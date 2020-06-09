@@ -12,17 +12,12 @@ function Square(props) {
     return (
         <input
             type="number"
+            value={value}
             className={`square ${styleName[0]} ${styleName[1]} ${styleName[2]}`}
-            onKeyDown={(e) => {
-                if (e.which !== 8 && (e.which < 97 || e.which > 105)) {
-                    e.preventDefault();
-                }
-            }}
+            maxLength="1"
             onChange={(e) => {
                 const val = e.target.value;
-                if (val.length > 1) {
-                    e.target.value = val[0];
-                } else if (/[1-9]/g.test(val)) {
+                if (/[1-9]/g.test(val) || e.target.value === "") {
                     handleSquare(e.target.value, rowInd, colInd);
                 } else {
                     e.target.value = "";
