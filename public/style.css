@@ -21,9 +21,49 @@ header {
 .square {
     height: 60px;
     width: 60px;
-    border: 2px solid white;
+    border: 0px;
     text-align: center;
     background-color: #576579;
     font-size: 3.75em;
     color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.grid {
+    margin-left: auto;
+    margin-right: auto;
+    width: 540px;
+    border: 2px solid white;
+}
+
+.leftsmall {
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.leftbig {
+    border-left: 2px solid white;
+}
+
+.topsmall {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.topbig {
+    border-top: 2px solid white;
+}
+
+.leftbig:before {
+    content: " ";
+    position: absolute;
+    z-index: 100;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 5px solid #ffea00;
 }
