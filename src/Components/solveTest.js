@@ -19,6 +19,12 @@ function solveTest(s, g) {
             possibles: possibles,
         };
         console.log(updated);
+    } else if (s.possibles) {
+        const updated = {
+            ...s,
+            possibles: [],
+        };
+        console.log(updated);
     }
 }
 

@@ -21,17 +21,18 @@ export function findImpossibles(s, g) {
 
     for (const r of grid) {
         for (const c of r) {
-            if (
-                (c.rowInd === row || c.square === sq || c.colInd === col) &&
-                !iArr.includes(c.value)
-            ) {
+            if (c.square === sq && !iArr.includes(c.value)) {
                 iArr.push(c.value);
             }
 
-            if (c.srow === srow || c.scol === scol) {
+            if (c.rowInd === row && !iArr.includes(c.value)) {
+                iArr.push(c.value);
+            }
+
+            if (c.colInd === col && !iArr.includes(c.value)) {
+                iArr.push(c.value);
             }
         }
     }
-    iArr.splice(0, 1);
     return iArr;
 }
