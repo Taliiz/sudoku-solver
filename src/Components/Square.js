@@ -11,13 +11,14 @@ function Square(props) {
 
     return (
         <input
-            type="number"
+            type="text"
             value={value}
             className={`square ${styleName[0]} ${styleName[1]} ${styleName[2]}`}
-            maxLength="1"
             onChange={(e) => {
                 const val = e.target.value;
-                if (/[1-9]/g.test(val) || e.target.value === "") {
+                if (val.length > 1) {
+                    e.target.value = val[0];
+                } else if (/[1-9]/g.test(val) || e.target.value === "") {
                     handleSquare(e.target.value, rowInd, colInd);
                 } else {
                     e.target.value = "";
