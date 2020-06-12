@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import testgrid from "./vars";
 import Grid from "./Grid";
 import solve from "./solve";
-import solveTest from "./solveTest";
+import solveOne from "./solveOne";
 
 function Solver() {
     const [gridArr, updateArr] = useState(testgrid);
@@ -23,12 +23,15 @@ function Solver() {
     }
 
     function handleSolve() {
-        const solvedGrid = solve(gridArr);
-        updateArr(solvedGrid);
+        solve(gridArr, solveOne, update);
     }
 
     function getInfo() {
-        solveTest(gridArr[row][col], gridArr);
+        solveOne(gridArr[row][col], gridArr, row, col, update);
+    }
+
+    function update(a) {
+        updateArr(a);
     }
 
     return (

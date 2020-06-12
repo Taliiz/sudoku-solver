@@ -1,6 +1,7 @@
 import { removeImpossibles, findImpossibles } from "./solvingFunctions";
 
-function solveTest(s, g) {
+function solveOne(s, g, r, c, update) {
+    let updated;
     if (!s.value) {
         let possibles = s.possibles;
         let value = s.value;
@@ -11,21 +12,31 @@ function solveTest(s, g) {
 
         if (possibles.length < 2) {
             value = possibles[0];
+            possibles = [];
         }
 
-        const updated = {
+        updated = {
             ...s,
             value: value,
             possibles: possibles,
         };
-        console.log(updated);
     } else if (s.possibles) {
-        const updated = {
+        updated = {
             ...s,
             possibles: [],
         };
-        console.log(updated);
     }
+
+    const grid = g.map((row) =>
+        row.map((square) => {
+            if (square.rowInd === r && square.colInd === c) {
+                return updated;
+            }
+            return square;
+        })
+    );
+
+    update(grid);
 }
 
-export default solveTest;
+export default solveOne;

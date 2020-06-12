@@ -16,8 +16,6 @@ export function findImpossibles(s, g) {
     const col = s.colInd;
     const grid = g;
     const iArr = [];
-    const srow = s.srow;
-    const scol = s.scol;
 
     for (const r of grid) {
         for (const c of r) {
