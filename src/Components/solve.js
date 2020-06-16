@@ -7,6 +7,8 @@ import {
 function solve(g, update) {
     let solved = true;
 
+    let same = true;
+
     let grid = JSON.parse(JSON.stringify(g));
 
     for (const r of grid) {
@@ -27,6 +29,7 @@ function solve(g, update) {
                 s.possibles = removeImpossibles(s.possibles, s.impossibles);
 
                 grid[i][j] = { ...s };
+                grid[i][j].possibles = checkPossibles(grid[i][j], grid);
 
                 if (s.possibles && s.possibles.length === 1) {
                     grid[i][j] = {
@@ -35,17 +38,23 @@ function solve(g, update) {
                         style: "solved",
                     };
                     return grid;
-                } else {
-                    grid[i][j].possibles = checkPossibles(grid[i][j], grid);
                 }
             }
         }
     }
 
-    if (!solved) {
-        return solve(grid);
-    } else {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            if (grid[i][j].value !== g[i][j].value) {
+                same = false;
+            }
+        }
+    }
+
+    if (same) {
         return grid;
+    } else {
+        return solve(grid);
     }
 }
 

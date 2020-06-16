@@ -41,8 +41,9 @@ export function checkPossibles(s, g) {
     const col = s.colInd;
     const grid = JSON.parse(JSON.stringify(g));
     let possibles = JSON.parse(JSON.stringify(s.possibles));
-    const impossibles = [];
-    const totalPossibles = [];
+    const squarePossibles = [];
+    const rowPossibles = [];
+    const colPossibles = [];
 
     for (const r of grid) {
         for (const sqr of r) {
@@ -52,8 +53,32 @@ export function checkPossibles(s, g) {
                 !(sqr.rowInd === row && sqr.colInd === col)
             ) {
                 for (const n of sqr.possibles) {
-                    if (!totalPossibles.includes(n)) {
-                        totalPossibles.push(n);
+                    if (!squarePossibles.includes(n)) {
+                        squarePossibles.push(n);
+                    }
+                }
+            }
+
+            if (
+                sqr.rowInd === row &&
+                !sqr.value &&
+                !(sqr.rowInd === row && sqr.colInd === col)
+            ) {
+                for (const n of sqr.possibles) {
+                    if (!rowPossibles.includes(n)) {
+                        rowPossibles.push(n);
+                    }
+                }
+            }
+
+            if (
+                sqr.colInd === col &&
+                !sqr.value &&
+                !(sqr.rowInd === row && sqr.colInd === col)
+            ) {
+                for (const n of sqr.possibles) {
+                    if (!colPossibles.includes(n)) {
+                        colPossibles.push(n);
                     }
                 }
             }
@@ -61,8 +86,16 @@ export function checkPossibles(s, g) {
     }
 
     for (const n of possibles) {
-        if (!totalPossibles.includes(n)) {
-            possibles = [n];
+        if (!squarePossibles.includes(n)) {
+            return [n];
+        }
+
+        if (!colPossibles.includes(n)) {
+            return [n];
+        }
+
+        if (!rowPossibles.includes(n)) {
+            return [n];
         }
     }
     return possibles;
