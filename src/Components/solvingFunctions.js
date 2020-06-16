@@ -34,3 +34,36 @@ export function findImpossibles(s, g) {
     }
     return iArr;
 }
+
+export function checkPossibles(s, g) {
+    const sq = s.square;
+    const row = s.rowInd;
+    const col = s.colInd;
+    const grid = JSON.parse(JSON.stringify(g));
+    let possibles = JSON.parse(JSON.stringify(s.possibles));
+    const impossibles = [];
+    const totalPossibles = [];
+
+    for (const r of grid) {
+        for (const sqr of r) {
+            if (
+                sqr.square === sq &&
+                !sqr.value &&
+                !(sqr.rowInd === row && sqr.colInd === col)
+            ) {
+                for (const n of sqr.possibles) {
+                    if (!totalPossibles.includes(n)) {
+                        totalPossibles.push(n);
+                    }
+                }
+            }
+        }
+    }
+
+    for (const n of possibles) {
+        if (!totalPossibles.includes(n)) {
+            possibles = [n];
+        }
+    }
+    return possibles;
+}

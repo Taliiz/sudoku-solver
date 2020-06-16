@@ -61,6 +61,10 @@ input::-webkit-inner-spin-button {
     border-top: 2px solid white;
 }
 
+.solved {
+    background-color: aquamarine;
+}
+
 .solveButton {
     width: 130px;
     height: 50px;

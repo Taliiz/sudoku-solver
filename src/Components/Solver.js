@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import testgrid from "./vars";
 import Grid from "./Grid";
 import solve from "./solve";
-import solveOne from "./solveOne";
+import solveTest from "./solveTest";
 
 function Solver() {
     const [gridArr, updateArr] = useState(testgrid);
-    const [row, setRow] = useState("");
-    const [col, setCol] = useState("");
 
     function handleSquare(value, rowInd, colInd, e) {
         let arr = gridArr.map((el) => {
@@ -23,15 +21,17 @@ function Solver() {
     }
 
     function handleSolve() {
-        solve(gridArr, solveOne, update);
+        const solvedGrid = solve(gridArr, update);
+        updateArr(solvedGrid);
     }
 
     function getInfo() {
-        solveOne(gridArr[row][col], gridArr, row, col, update);
+        solveTest();
     }
 
-    function update(a) {
-        updateArr(a);
+    function update(g) {
+        const grid = JSON.parse(JSON.stringify(g));
+        updateArr(grid);
     }
 
     return (
@@ -42,15 +42,6 @@ function Solver() {
             <button className="solveButton" onClick={handleSolve}>
                 Solve
             </button>
-            <div>
-                <input
-                    onChange={(e) => setRow(parseInt(e.target.value))}
-                ></input>
-                <input
-                    onChange={(e) => setCol(parseInt(e.target.value))}
-                ></input>
-                <button onClick={getInfo}>get info</button>
-            </div>
         </div>
     );
 }
